@@ -2,12 +2,20 @@
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.core.UriBuilder;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource;
+import com.sun.jersey.api.client.config.ClientConfig;
+import com.sun.jersey.api.client.config.DefaultClientConfig;
 
 import au.edu.unsw.sltf.services.SummaryMarketDataResponseDocument.SummaryMarketDataResponse;
 
@@ -36,6 +44,9 @@ public class NewControlServlet extends HttpServlet {
 		String[] downloadRequest;
 		String[] importRequest;
 		String[] summaryRequest;
+		ClientConfig config = new DefaultClientConfig();
+		Client client = Client.create(config);
+		WebResource service = client.resource(getBaseURI());
 		if(request.getParameter("currencyService") != null){
 			
 			eventSetId = request.getParameter("eventSetId");
@@ -85,8 +96,26 @@ public class NewControlServlet extends HttpServlet {
 			getServletContext().setAttribute("outputSummaryFileSize", res.getFileSize());
 			response.sendRedirect("../NewSoapServices/home#summary");
 		}
-		
-			else{
+		else if(request.getParameter("xml-convert") != null){
+			String evID = request.getParameter("eventIdToXML");
+			String resp = "no event id specified";
+			if (evID != null) {
+				resp = service.path("events").path(evID).header("Auth", "abc123").put(String.class);
+			}	
+			getServletContext().setAttribute("toXMLOutput",resp);
+			response.sendRedirect("../NewSoapServices/home#currency");
+		}
+		else if (request.getParameter("xml-query") != null) {
+			String evID = request.getParameter("eventIdToQuery");
+			String type = request.getParameter("queryType");
+			String resp1 = "no event id specified";
+			if (evID != null && type != null) {
+				resp1 = service.path("events").path(evID).path(type).header("Auth", "abc123").get(String.class);
+			}
+			getServletContext().setAttribute("toQueryOutput", resp1);
+			response.sendRedirect("../NewSoapServices/home#currency");
+		}
+		else{
 				request.getRequestDispatcher("homepage.jsp").forward(request, response);
 			}
 	}
@@ -96,6 +125,10 @@ public class NewControlServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	}
+	private static URI getBaseURI() {
+		return UriBuilder.fromUri(
+				"http://localhost:8080/DataService").build();
 	}
 
 }

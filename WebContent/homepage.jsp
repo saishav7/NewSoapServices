@@ -414,9 +414,9 @@
 						<div id="portfoliolist">
 						<div class="portfolio-wrapper">	
 						<div class="clear"> </div>
-							<form method="GET" action="create-xml/">
+							<form method="GET">
 						    	<input type="text" class="textbox" name="eventIdToXML" value="eventIdToXML" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Event Set Id';}">
-							    <input type="hidden" name="xmlConvert" value="true">
+							    <input type="hidden" name="xml-convert" value="true">
 							   	<input type="submit" class="" id="xmlDownloadSubmit" value="Submit">
 							</form>
 						</div>
@@ -424,12 +424,12 @@
 						<div class="contact-form">
 						<div class="clear"> </div>
 							<h3>OUTPUT </h3>
-							<h3>XML file: ${outputEventSetId}</h3>
+							<h3>Status: ${toXMLOutput}</h3>
 						</div>
 						<div>
-							<form method="GET" action="xml-query/">
-								<input type="text" id="eventIdToQuery" />
-								<select id="queryType">
+							<form method="GET">
+								<input type="text" name="eventIdToQuery" />
+								<select name="queryType">
 									<option value="/xml">All in XML</option>
 									<option value="/trade/xml">Trades in XML</option>
 									<option value="/quote/xml">Quotes in XML</option>
@@ -438,7 +438,14 @@
 									<option value="/quote/json">Trades in JSON</option>
 								</select>
 								<input type="submit" id="xmlDownloadSubmit" />
+								<input type="hidden" name="xml-query" value="true">
 							</form>
+						</div>
+						<div class="clear"> </div>
+						<div class="contact-form">
+						<div class="clear"> </div>
+							<h3>OUTPUT </h3>
+							<h3>Status: ${toQueryOutput}</h3>
 						</div>
 	</div><!-- container -->
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
