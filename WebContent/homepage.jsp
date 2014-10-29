@@ -393,7 +393,64 @@
 	</div>
 	</div>
 </div>
+</div>
+</div>
 <!---End-Currency----->
+<!---Start-XML----->
+<div class="wrap" id="summary">
+			<div class="main">
+					<!-- start galle -->
+							<div class="gallery1">
+			<!---start-content----->
+			<div class="gallery">
+					<div class="clear"> </div>
+					<div class="container">
+					<div class="contact-form">
+						<h2>Want more services? Convert to XML here</h2>
+						<p>
+						
+						
+						</p>
+						<div id="portfoliolist">
+						<div class="portfolio-wrapper">	
+						<div class="clear"> </div>
+							<form method="GET" action="create-xml/">
+						    	<input type="text" class="textbox" name="eventIdToXML" value="eventIdToXML" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Event Set Id';}">
+							    <input type="hidden" name="xmlConvert" value="true">
+							   	<input type="submit" class="" id="xmlDownloadSubmit" value="Submit">
+							</form>
+						</div>
+						<div class="clear"> </div>
+						<div class="contact-form">
+						<div class="clear"> </div>
+							<h3>OUTPUT </h3>
+							<h3>XML file: ${outputEventSetId}</h3>
+						</div>
+						<div>
+							<form method="GET" action="xml-query/">
+								<input type="text" id="eventIdToQuery" />
+								<select id="queryType">
+									<option value="/xml">All in XML</option>
+									<option value="/trade/xml">Trades in XML</option>
+									<option value="/quote/xml">Quotes in XML</option>
+									<option value="/trade/totalprice">Total prices of trades in XML</option>
+									<option value="/quote/xml">Trades in JSON</option>
+									<option value="/quote/json">Trades in JSON</option>
+								</select>
+								<input type="submit" id="xmlDownloadSubmit" />
+							</form>
+						</div>
+	</div><!-- container -->
+	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
+	<script type="text/javascript">$('body').flipLightBox()</script>
+	<div class="clear"> </div>
+	</div>
+	</div>
+	</div>
+</div>
+</div>
+</div>
+<!---End-XML----->
      <div class="footer-bottom">
      	<div class="wrap">
      	<div class="copy">
