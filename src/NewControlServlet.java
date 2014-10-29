@@ -106,10 +106,11 @@ public class NewControlServlet extends HttpServlet {
 			response.sendRedirect("../NewSoapServices/home#currency");
 		}
 		else if (request.getParameter("xml-query") != null) {
+			String id = request.getParameter("eventIdToQuery");
 			String evID = request.getParameter("eventIdToQuery");
 			String type = request.getParameter("queryType");
 			String resp1 = "no event id specified";
-			if (evID != null && type != null) {
+			if (id != null && type != null) {
 				resp1 = service.path("events").path(evID).path(type).header("Auth", "abc123").get(String.class);
 			}
 			getServletContext().setAttribute("toQueryOutput", resp1);
@@ -130,5 +131,4 @@ public class NewControlServlet extends HttpServlet {
 		return UriBuilder.fromUri(
 				"http://localhost:8080/DataService").build();
 	}
-
 }

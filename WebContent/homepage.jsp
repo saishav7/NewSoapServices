@@ -429,7 +429,7 @@
 						<div>
 							<form method="GET">
 								<input type="text" name="eventIdToQuery" />
-								<select name="queryType">
+								<select id="queryType">
 									<option value="/xml">All in XML</option>
 									<option value="/trade/xml">Trades in XML</option>
 									<option value="/quote/xml">Quotes in XML</option>
