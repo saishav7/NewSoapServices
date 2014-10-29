@@ -1,0 +1,19 @@
+Want more services? Convert to XML here<br/>
+<form method="GET" action="create-xml/">
+	<input type="text" id="eventIdToXML" />
+	<input type="submit" id="xmlDownloadSubmit" />
+</form><br/>
+<br/>
+What would you like to know?
+<form method="GET" action="xml-query/">
+	<input type="text" id="eventIdToQuery" />
+	<select id="queryType">
+		<option value="/xml">All in XML</option>
+		<option value="/trade/xml">Trades in XML</option>
+		<option value="/quote/xml">Quotes in XML</option>
+		<option value="/trade/totalprice">Total prices of trades in XML</option>
+		<option value="/quote/xml">Trades in JSON</option>
+		<option value="/quote/json">Trades in JSON</option>
+	</select>
+	<input type="submit" id="xmlDownloadSubmit" />
+</form>
